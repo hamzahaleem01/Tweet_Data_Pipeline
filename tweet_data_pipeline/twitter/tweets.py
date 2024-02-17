@@ -1,7 +1,10 @@
-import tweepy
 import pandas as pd
+import tweepy
+
+import tweet_data_pipeline.utils.database.orms as orms
 from tweet_data_pipeline.settings import Settings
 from tweet_data_pipeline.utils.database.connector import DBconnector
+from tweet_data_pipeline.utils.database.utils import insert_base_orm_df
 
 from .. import logger
 
@@ -50,6 +53,7 @@ async def getTweets(env_set: Settings, connector: DBconnector) -> None:
         ]
 
         tweets_df = pd.DataFrame(attributes_container, columns=columns)
-        logger.info(tweets_df)
+        await insert_base_orm_df(connector, orms.Tweets, tweets_df)
+
     except BaseException as e:
         logger.error("Status Failed On,", str(e))

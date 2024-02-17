@@ -8,13 +8,13 @@ class Settings(BaseSettings):
     DB_NAME: str = str()
     DB_USER: str = str()
     DB_PASSWORD: str = str()
-    DB_PORT: str = str()  # "5432"
-    DB_SSL_MODE: str = str()  # "require"
+    DB_PORT: str = str()
+    DB_SSL_MODE: str = str()
     CONSUMER_API_KEY: str = str()
     CONSUMER_API_KEY_SECRET: str = str()
     ACCESS_TOKEN: str = str()
     ACCESS_SECRET: str = str()
-    TWEET_FILTER: list = list(str)
+    TWEET_FILTER: list = list()
 
     class Config:
         """Instance which imports data from .env file."""

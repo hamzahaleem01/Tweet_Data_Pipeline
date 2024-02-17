@@ -1,4 +1,5 @@
-from dagster import Definitions, load_assets_from_modules, get_dagster_logger
+from dagster import Definitions, get_dagster_logger, load_assets_from_modules
+
 from tweet_data_pipeline.settings import Settings
 from tweet_data_pipeline.utils.database.connector import DBconnector
 
@@ -11,7 +12,6 @@ connector = DBconnector(
     env_set.DB_PASSWORD,
     env_set.DB_PORT,
 )
-
 
 from . import assets
 
