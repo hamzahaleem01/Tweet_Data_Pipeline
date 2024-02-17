@@ -1,47 +1,49 @@
+
 # Data Pipeline in Dagster
 
-This is a [Dagster](https://dagster.io/) project scaffolded with [`dagster project scaffold`](https://docs.dagster.io/getting-started/create-new-project).
+This is a data pipeline using dagster as an ETL orchestration tool.
 
-## Getting started
+## Project Description
 
-First, install your Dagster code location as a Python package. By using the --editable flag, pip will install your Python package in ["editable mode"](https://pip.pypa.io/en/latest/topics/local-project-installs/#editable-installs) so that as you develop, local code changes will automatically apply.
+This data pipeline leverages the functionalities of Dagster to fetch tweets data from twitter API call and populate tables in the Postgresql database. 
 
-```bash
-pip install -e ".[dev]"
-```
+## Deployment
 
-Then, start the Dagster UI web server:
+This pipeline can be executed on local machine and on docker. Run `dagster dev` command in terminal to execute the pipeline locally. Moreover, the code also contains docker-compose.yaml file to containerize the pipeline and run on docker containers.
 
-```bash
-dagster dev
-```
+## Dependencies
 
-Open http://localhost:3000 with your browser to see the project.
+Postgresql database server is needed as it is used by Dagster to store information related to schedules, sensors, logs, etc. Moreover, data from twitter API is also loaded in the same Postgresql server but difference database.
 
-You can start writing assets in `tweet_data_pipeline/assets.py`. The assets are automatically loaded into the Dagster code location as you define them.
+## Public Pypi
+Python >= 3.10
 
-## Development
+| Package | Version | 
+|---------|---------|
+| asyncpg | 0.28.0 | 
+| pandas | 2.1.1 | 
+| sqlalchemy | 2.0.22 |
+| dagster | 1.5.13 |
+| dagster-webserver | 1.5.13 |
+| dagster-postgres | 0.21.13 |
+| dagit | 1.5.13 |
+| greenlet | 3.0.3|
+| tweepy | 4.14.0|
 
-### Adding new Python dependencies
+## Database Tables
+**TableName:** tweets
 
-You can specify new Python dependencies in `setup.py`.
+| Column | Description | 
+|---------|---------|
+| twitter_user | Name of the twitter user | 
+| date_created | Date and time the tweet was created | 
+| number_of_likes | Number of likes the tweet received|
+| source_of_tweet | Source of the tweet i.e. Web-App, iPhone, etc |
+| tweet | content of the tweet in text format|
 
-### Unit testing
+**TableName:** filters
 
-Tests are in the `tweet_data_pipeline_tests` directory and you can run tests using `pytest`:
-
-```bash
-pytest tweet_data_pipeline_tests
-```
-
-### Schedules and sensors
-
-If you want to enable Dagster [Schedules](https://docs.dagster.io/concepts/partitions-schedules-sensors/schedules) or [Sensors](https://docs.dagster.io/concepts/partitions-schedules-sensors/sensors) for your jobs, the [Dagster Daemon](https://docs.dagster.io/deployment/dagster-daemon) process must be running. This is done automatically when you run `dagster dev`.
-
-Once your Dagster Daemon is running, you can start turning on schedules and sensors for your jobs.
-
-## Deploy on Dagster Cloud
-
-The easiest way to deploy your Dagster project is to use Dagster Cloud.
-
-Check out the [Dagster Cloud Documentation](https://docs.dagster.cloud) to learn more.
+| Column | Description | 
+|---------|---------|
+| filters | filter on which the developer wants to filter the tweets | 
+| date_created | Date and time the filter was created | 
