@@ -1,4 +1,4 @@
-# tweet_data_pipeline
+# Data Pipeline in Dagster
 
 This is a [Dagster](https://dagster.io/) project scaffolded with [`dagster project scaffold`](https://docs.dagster.io/getting-started/create-new-project).
 
