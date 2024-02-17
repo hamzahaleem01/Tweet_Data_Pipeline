@@ -25,7 +25,6 @@ async def getTweets(env_set: Settings, connector: DBconnector) -> None:
         "'{}'".format("''".join(env_set.TWEET_FILTER))
         + "-filter:retweets AND -filter:replies AND -filter:links"
     )
-    logger.info(search_query)
     no_of_tweets = 100
 
     try:
