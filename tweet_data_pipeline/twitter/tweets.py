@@ -18,12 +18,11 @@ async def getTweets(env_set: Settings, connector: DBconnector) -> None:
 
     api = tweepy.API(auth, wait_on_rate_limit=True)
 
-    tweet_filters = ["tech", "technology"]
-
     search_query = (
-        "'{}'".format("''".join(tweet_filters))
+        "'{}'".format("''".join(env_set.TWEET_FILTER))
         + "-filter:retweets AND -filter:replies AND -filter:links"
     )
+    logger.info(search_query)
     no_of_tweets = 100
 
     try:
