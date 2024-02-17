@@ -14,7 +14,6 @@ class Settings(BaseSettings):
     CONSUMER_API_KEY_SECRET: str = str()
     ACCESS_TOKEN: str = str()
     ACCESS_SECRET: str = str()
-    TWEET_FILTER: list = list()
 
     class Config:
         """Instance which imports data from .env file."""

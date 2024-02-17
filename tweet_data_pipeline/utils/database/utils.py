@@ -1,5 +1,6 @@
 import pandas as pd
-from sqlalchemy import insert
+from sqlalchemy import insert, select
+from typing import List
 
 from tweet_data_pipeline.utils.database.connector import DBconnector
 from tweet_data_pipeline.utils.database.orms import BaseType
@@ -28,3 +29,17 @@ async def insert_base_orm_df(connector: DBconnector, base_orm: BaseType, df: pd.
                 insert_success = True
             await session.commit()
     return insert_success
+
+
+async def read_sql_query_to_list(connector: DBconnector, stmt: select) -> List[tuple]:
+    """Run sync query and return data as a list of tuples."""
+    try:
+        logger.debug(f"Using following statement to load data into a list: {stmt}")
+        async with connector.async_session_factory() as session:
+            query_result = await session.execute(stmt)
+            await session.commit()
+        return list(query_result)
+    except Exception as e:
+        e_msg = str(e).replace("\\n", " ")
+        logger.error(f"Data retrieval failed, see error for more information: {e_msg}")
+        return []

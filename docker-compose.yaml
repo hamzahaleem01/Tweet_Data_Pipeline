@@ -1,0 +1,19 @@
+services:
+  dagster-dagit:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+
+  dagster-daemon:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: 'dagster-daemon run'
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_DB=postgres
+      - POSTGRES_HOST=${DB_HOST}
+      - POSTGRES_PORT=5432

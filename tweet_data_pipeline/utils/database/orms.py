@@ -22,4 +22,13 @@ class Tweets(Base):
     tweet = Column(TEXT)
 
 
+class Filters(Base):
+    """Define metadate for airport tweets."""
+
+    metadata = MetaData(schema="public")
+    __tablename__ = "filters"
+    filters = Column(String, primary_key=True)
+    date_created = Column(DateTime(timezone=False))
+
+
 BaseType = TypeVar("BaseType", bound=Type[Base])
