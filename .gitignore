@@ -370,3 +370,6 @@ code-and-image-quality/*.xml
 
 *vscode
 **/local.settings.json
+
+
+.env
