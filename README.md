@@ -5,15 +5,15 @@ This is a data pipeline using dagster as an ETL orchestration tool.
 
 ## Project Description
 
-This data pipeline leverages the functionalities of Dagster to fetch tweets data from twitter API call and populate tables in the Postgresql database. 
+This data pipeline utilizes Dagster functionalities to retrieve tweet data through Twitter API calls and populate tables within a Postgresql database.
 
 ## Deployment
 
-This pipeline can be executed on local machine and on docker. Run `dagster dev` command in terminal to execute the pipeline locally. Moreover, the code also contains docker-compose.yaml file to containerize the pipeline and run on docker containers.
+This pipeline is deployable both locally and within Docker containers. Execute the pipeline locally by running the dagster dev command in the terminal. Additionally, the code includes a docker-compose.yaml file for containerizing the pipeline and running it within Docker containers.
 
 ## Dependencies
 
-Postgresql database server is needed as it is used by Dagster to store information related to schedules, sensors, logs, etc. Moreover, data from twitter API is also loaded in the same Postgresql server but difference database.
+A Postgresql database server is essential for this setup, as Dagster relies on it to store information regarding schedules, sensors, logs, etc. Additionally, data retrieved from the Twitter API is also loaded into the same Postgresql server but within a different database.
 
 ## Public Pypi
 Python >= 3.10
